@@ -2,18 +2,19 @@ package com.example.renchunlin.wall_e.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.example.renchunlin.wall_e.R;
 import com.example.renchunlin.wall_e.adapter.EncounterAdapter;
 import com.example.renchunlin.wall_e.entity.EncounterData;
 import com.example.renchunlin.wall_e.ui.WebViewActivity;
 import com.example.renchunlin.wall_e.utils.StaticClass;
+import com.example.renchunlin.wall_e.view.LoadListView;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 
@@ -32,12 +33,11 @@ import java.util.List;
  *  创建时间:   2016/8/29 12:44
  *  描述:       瓦力
  */
-public class FraEncounter extends Fragment{
+public class FraEncounter extends Fragment implements LoadListView.ILoadListener{
 
-    private ListView mListView;
+    private LoadListView mListView;
     private EncounterData data;
     private List<EncounterData> mList=new ArrayList<>();
-
     //标题
     private List<String> mListTitle=new ArrayList<>();
     //地址
@@ -45,24 +45,20 @@ public class FraEncounter extends Fragment{
 
     private EncounterAdapter adapter;
 
+    int count=1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_selected,null);
-        findView(view);
+
+        initData();
+        findView(view,mList);
         return view;
     }
 
-    private void findView(View view) {
-        mListView= (ListView) view.findViewById(R.id.mListView);
-        String url="https://api.tianapi.com/wxnew/?key="+ StaticClass.WECHAT_KEY+"&num=50";
-        //解析接口
-        RxVolley.get(url, new HttpCallback() {
-            @Override
-            public void onSuccess(String t) {
-                //Toast.makeText(getActivity(),t, Toast.LENGTH_SHORT).show();
-                parsingJson(t);
-            }
-        });
+    public void findView(View view,List<EncounterData> mList) {
+        mListView= (LoadListView) view.findViewById(R.id.mListView);
+        getData();
 
         //点击事件
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -75,6 +71,41 @@ public class FraEncounter extends Fragment{
                 intent.putExtra("url",mListUrl.get(position));
                 startActivity(intent);
 
+            }
+        });
+    }
+
+    public void getData(){
+        if (adapter == null) {
+            mListView.setInterface(this);
+            adapter = new EncounterAdapter(getActivity(), mList);
+            mListView.setAdapter(adapter);
+        } else {
+            adapter.onDateChange(mList);
+        }
+    }
+
+    private void initData() {
+        String url="https://api.tianapi.com/wxnew/?key="+ StaticClass.WECHAT_KEY+"&num=10&page=0";
+        //解析接口
+        RxVolley.get(url, new HttpCallback() {
+            @Override
+            public void onSuccess(String t) {
+                //Toast.makeText(getActivity(),t, Toast.LENGTH_SHORT).show();
+                parsingJson(t);
+            }
+        });
+    }
+
+    private void initLoadData() {
+        count++;
+        String url="https://api.tianapi.com/wxnew/?key="+ StaticClass.WECHAT_KEY+"&num=10&page="+count+"";
+        //解析接口
+        RxVolley.get(url, new HttpCallback() {
+            @Override
+            public void onSuccess(String t) {
+                //Toast.makeText(getActivity(),t, Toast.LENGTH_SHORT).show();
+                parsingLoadJson(t);
             }
         });
     }
@@ -98,10 +129,53 @@ public class FraEncounter extends Fragment{
                 mListTitle.add(title);
                 mListUrl.add(url);
             }
-            adapter=new EncounterAdapter(getActivity(),mList);
-            mListView.setAdapter(adapter);
+            //adapter=new EncounterAdapter(getActivity(),mList);
+            //mListView.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void parsingLoadJson(String t) {
+        try {
+            JSONObject jsonObject=new JSONObject(t);
+            JSONArray jsonArray=jsonObject.getJSONArray("newslist");
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject jsonLoad= (JSONObject) jsonArray.get(i);
+                data=new EncounterData();
+
+                String title=jsonLoad.getString("title");
+                String url=jsonLoad.getString("url");
+
+                data.setTitle(title);
+                data.setDescription(jsonLoad.getString("description"));
+                data.setPicUrl(jsonLoad.getString("picUrl"));
+                mList.add(data);
+
+                mListTitle.add(title);
+                mListUrl.add(url);
+            }
+            //adapter=new EncounterAdapter(MainActivity.this,mList);
+            //mListView.setAdapter(adapter);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onLoad() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                //获取更多数据
+                initLoadData();
+                //更新listview显示；
+                getData();
+                //通知listview加载完毕
+                mListView.loadComplete();
+            }
+        }, 1000);
     }
 }

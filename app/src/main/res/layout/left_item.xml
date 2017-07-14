@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:src="@drawable/assistant"
+        android:src="@drawable/right_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp" />

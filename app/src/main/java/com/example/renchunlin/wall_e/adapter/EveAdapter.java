@@ -37,9 +37,16 @@ public class EveAdapter extends BaseAdapter{
         this.mContext=mContext;
         this.mList=mList;
 
+        this.inflater=LayoutInflater.from(mContext);
+
         inflater= (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         wm= (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         width=wm.getDefaultDisplay().getWidth();
+    }
+
+    public void onDateChange(List<EveData> mList) {
+        this.mList = mList;
+        this.notifyDataSetChanged();
     }
 
     @Override
