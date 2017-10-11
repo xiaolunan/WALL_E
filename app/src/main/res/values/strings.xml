@@ -4,7 +4,7 @@
     <string name="text_unknown">unknown</string>
     <string name="text_login">log in</string>
     <string name="text_registered">registered</string>
-    <string name="text_forget_password">forget password</string>
+    <string name="text_forget_password">forget password?</string>
     <string name="text_keep_password">Remember the password</string>
     <string name="text_user_name">username</string>
     <string name="text_password">password</string>
@@ -39,4 +39,9 @@
     <string name="text_zip_code">Zip code:</string>
     <string name="text_operator">Operator:</string>
     <string name="text_cell_phone_number">Cell-phone number:</string>
+
+    <string name="alphabet_and_number">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
+    <string name="alphabet_and_number_age">0123456789</string>
+
+    <string name="email_completionHint">Please select the email suffix</string>
 </resources>

@@ -11,25 +11,35 @@
         android:id="@+id/et_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/text_user_name"/>
+        android:hint="@string/text_user_name"
+        android:digits="@string/alphabet_and_number"
+        android:maxLength="11"
+        android:inputType="number"/>
 
     <EditText
         android:id="@+id/et_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/text_age"/>
+        android:inputType="number"
+        android:hint="@string/text_age"
+        android:maxLength="2"
+        android:layout_marginTop="10dp"
+        android:digits="@string/alphabet_and_number_age"/>
 
     <EditText
         android:id="@+id/et_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/text_desc"
+        android:layout_marginTop="10dp"
+        android:maxLength="50"
         android:lines="2"/>
 
     <RadioGroup
         android:id="@+id/mRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <RadioButton
@@ -54,27 +64,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/text_password"
-        android:password="true"/>
+        android:layout_marginTop="10dp"
+        android:digits="@string/alphabet_and_number"
+        android:maxLength="16"
+        android:inputType="textPassword"/>
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/text_password_again"
-        android:password="true"/>
+        android:maxLength="16"
+        android:digits="@string/alphabet_and_number"
+        android:inputType="textPassword"/>
 
-    <EditText
-        android:id="@+id/et_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/text_email"/>
+        <AutoCompleteTextView
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_email"
+            android:layout_marginTop="10dp"
+            android:digits="@string/alphabet_and_number"
+            android:maxLength="25"
+            android:completionHint="@string/email_completionHint"
+            android:inputType="number"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/text_register_remind"
         android:textColor="@color/colorAccent"
-        android:textSize="15sp"/>
+        android:layout_marginTop="10dp" />
 
 
     <Button

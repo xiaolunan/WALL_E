@@ -28,7 +28,7 @@ public class StaticClass {
     //微信精选key
     public static final String WECHAT_KEY="10e8c38cd13f83e1367a81093edca690";
     //GIRL_URL
-    public static final String GIRL_URL="http://gank.io/api/search/query/listview/category/%E7%A6%8F%E5%88%A9/count/50/page/1";
+    public static final String GIRL_URL="http://gank.io/api/data/福利/100/1";
     //版本更新
     public static final String CHECK_UPDATE_URL = "http://192.168.0.111:8080/renchunlin/config.json";
 

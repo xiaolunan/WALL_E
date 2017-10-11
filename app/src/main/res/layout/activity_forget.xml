@@ -18,19 +18,29 @@
         android:id="@+id/et_now"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/text_now_password"/>
+        android:layout_marginTop="10dp"
+        android:hint="@string/text_now_password"
+        android:digits="@string/alphabet_and_number"
+        android:maxLength="16"/>
 
     <EditText
         android:id="@+id/et_new"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/text_new_password"/>
+        android:hint="@string/text_new_password"
+        android:digits="@string/alphabet_and_number"
+        android:maxLength="16"
+        android:inputType="textPassword"/>
 
     <EditText
         android:id="@+id/et_new_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/text_password_again"/>
+        android:layout_marginTop="10dp"
+        android:hint="@string/text_password_again"
+        android:digits="@string/alphabet_and_number"
+        android:maxLength="16"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/btn_update_password"
@@ -38,6 +48,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_bg"
         android:text="@string/text_editor_password"
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/white"/>
 
     <TextView
@@ -48,19 +59,25 @@
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"/>
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/text_email"/>
+        android:hint="@string/text_email"
+        android:layout_marginTop="10dp"
+        android:digits="@string/alphabet_and_number"
+        android:maxLength="25"
+        android:completionHint="@string/email_completionHint"
+        android:inputType="number"/>
 
     <Button
         android:id="@+id/btn_forget_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@drawable/button_bg"
         android:text="@string/text_forget_password"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white" />
 
 
 </LinearLayout>

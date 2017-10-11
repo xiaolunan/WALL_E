@@ -82,6 +82,7 @@ public class FraEncounter extends Fragment implements LoadListView.ILoadListener
             mListView.setAdapter(adapter);
         } else {
             adapter.onDateChange(mList);
+            adapter.notifyDataSetChanged();
         }
     }
 
@@ -176,6 +177,6 @@ public class FraEncounter extends Fragment implements LoadListView.ILoadListener
                 //通知listview加载完毕
                 mListView.loadComplete();
             }
-        }, 1000);
+        }, 2000);
     }
 }

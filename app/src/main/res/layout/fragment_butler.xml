@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@drawable/ltbg"
     android:orientation="vertical">
 
     <ListView
         android:id="@+id/mChatListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:divider="@null"
         android:layout_weight="1" />
 
     <LinearLayout

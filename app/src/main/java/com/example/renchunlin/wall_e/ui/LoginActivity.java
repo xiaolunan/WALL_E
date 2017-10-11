@@ -25,10 +25,12 @@ import com.example.renchunlin.wall_e.MainActivity;
 import com.example.renchunlin.wall_e.R;
 import com.example.renchunlin.wall_e.entity.MyUser;
 import com.example.renchunlin.wall_e.utils.ShareUtils;
+import com.example.renchunlin.wall_e.utils.UtilTools;
 import com.example.renchunlin.wall_e.view.CustomDialog;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,6 +40,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText et_password;
     private Button btnLogin;
     private CheckBox keep_password;
+
+    //圆形头像
+    private CircleImageView profile_image;
 
     private TextView tv_forget;
     private CustomDialog dialog;
@@ -59,6 +64,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         keep_password = (CheckBox) findViewById(R.id.keep_password);
         tv_forget = (TextView) findViewById(R.id.tv_forget);
         tv_forget.setOnClickListener(this);
+
+        profile_image= (CircleImageView)findViewById(R.id.profile_image);
+        profile_image.setOnClickListener(this);
+
+        UtilTools.getImageToShare(this,profile_image);
 
         boolean isKeep = ShareUtils.getBoolean(this, "keeppass", false);
         keep_password.setChecked(isKeep);

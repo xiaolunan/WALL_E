@@ -4,7 +4,7 @@
     <string name="text_unknown">未知</string>
     <string name="text_login">登录</string>
     <string name="text_registered">注册</string>
-    <string name="text_forget_password">忘记密码</string>
+    <string name="text_forget_password">忘记密码?</string>
     <string name="text_keep_password">记住密码</string>
     <string name="text_user_name">用户名</string>
     <string name="text_password">密码</string>
@@ -39,4 +39,5 @@
     <string name="text_zip_code">邮编：</string>
     <string name="text_operator">运营商：</string>
     <string name="text_cell_phone_number">手机号：</string>
+    <string name="email_completionHint">请选择邮箱后缀</string>
 </resources>

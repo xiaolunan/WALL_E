@@ -23,7 +23,10 @@
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:hint="@string/text_user_name"/>
+        android:hint="@string/text_user_name"
+        android:digits="@string/alphabet_and_number"
+        android:maxLength="11"
+        android:inputType="number"/>
 
     <EditText
         android:layout_marginTop="10dp"
@@ -33,6 +36,8 @@
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:digits="@string/alphabet_and_number"
+        android:maxLength="16"
         android:hint="@string/text_password"/>
 
     <LinearLayout
@@ -75,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <TextView
@@ -84,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="@string/text_forget_password"
-            android:textColor="@color/colorAccent"/>
+            android:textColor="@color/colorAccent" />
 
 
     </LinearLayout>
